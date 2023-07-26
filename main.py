@@ -15,7 +15,7 @@ ckeditor = CKEditor(app)
 bootstrap = Bootstrap(app)
 
 ##Connect to Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://todo_db_6jri_user:hnHq3HCVdXWF9CXe3lG8ePQ3C7OufvPe@dpg-cj0qjjaip7vkfo41nbrg-a/todo_db_6jri'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
