@@ -1,0 +1,172 @@
+{% include "header.html" %}
+
+<body>
+
+
+<main class="container py-5">
+  <h1>To-Do list</h1>
+  <p class="lead">Your ultimate To-Do list manager!</p>
+
+  <p>Stay Organized, Efficient, and On Top of Your Tasks with Our Intuitive To-Do List Tool.</p>
+
+  <hr class="my-5">
+
+
+<!--  main to do card -->
+  <div class="row" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: 1855px;">
+    <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">To Do</h5>
+          <div class="my-3 p-3 bg-body rounded shadow-sm">
+
+    {% if todo_true: %}
+    {% for todo in todos %}
+    {% if todo.statis == "todo": %}
+    <div class="d-flex text-body-secondary pt-3">
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="{{ todo.color }}"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em"></text></svg>
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">{{ todo.task_name }}</strong>
+        <strong class="d-block text-gray">{{ todo.date }}</strong>
+        <strong class="d-block text-gray">At {{ todo.time }}</strong>
+        {{todo.description}}
+      </p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <small class="d-block text-end mt-3">
+      <a href="{{url_for('show_all_todos')}}">All ToDos</a>
+    </small>
+    {% else: %}
+      <p class="small lh-sm">ToDo list is empty</p>
+      <p class="small lh-sm">Add a ToDo to your list</p>
+    {% endif %}
+  </div>
+          <a href="{{url_for('add_todo')}}">
+          <button class="btn btn-primary d-inline-flex align-items-center" type="button">
+    Add<svg class="bi ms-1" width="20" height="20"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
+  <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+</svg></svg>
+  </button>
+            </a>
+        </div>
+      </div>
+    </div>
+
+
+<!--  main doing card -->
+    <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 362px;">
+      <div class="card">
+        <figure class=" mb-0">
+        <div class="card-body">
+          <h5 class="card-title">Doing</h5>
+          <div class="my-3 p-3 bg-body rounded shadow-sm">
+    {% if doing_true: %}
+    {% for todo in todos %}
+    {% if todo.statis == "doing": %}
+    <div class="d-flex text-body-secondary pt-3">
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="{{ todo.color }}"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em"></text></svg>
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">{{ todo.task_name }}</strong>
+        <strong class="d-block text-gray">{{ todo.date }}</strong>
+        <strong class="d-block text-gray">At {{ todo.time }}</strong>
+        {{todo.description}}
+      </p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <small class="d-block text-end mt-3">
+      <a href="{{url_for('show_all_doings')}}">All Doings</a>
+    </small>
+            {% else: %}
+      <p class="small lh-sm">Doing list is empty</p>
+      <p class="small lh-sm">Start doing something</p>
+    {% endif %}
+        </figure>
+      </div>
+    </div>
+
+
+<!--  main done card -->
+    <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 533px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Done</h5>
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+    {% if done_true: %}
+    {% for todo in todos %}
+    {% if todo.statis == "done": %}
+    <div class="d-flex text-body-secondary pt-3">
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="{{ todo.color }}"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em"></text></svg>
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">{{ todo.task_name }}</strong>
+        <strong class="d-block text-gray">{{ todo.date }}</strong>
+        <strong class="d-block text-gray">At {{ todo.time }}</strong>
+        {{todo.description}}
+      </p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <small class="d-block text-end mt-3">
+      <a href="{{url_for('show_all_dones')}}">All Dones</a>
+    </small>
+            {% else: %}
+      <p class="small lh-sm">Done list is empty</p>
+      <p class="small lh-sm">Finish something</p>
+    {% endif %}
+  </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  todays tasks card -->
+    <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 533px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Today's Tasks</h5>
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+    {% if today_todos: %}
+    {% for todo in today_todos %}
+    <div class="d-flex text-body-secondary pt-3">
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="{{ todo.color }}"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em"></text></svg>
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">{{ todo.task_name }}</strong>
+        <strong class="d-block text-gray">{{ todo.date }}</strong>
+        <strong class="d-block text-gray">At {{ todo.time }}</strong>
+        {{todo.description}}
+      </p>
+    </div>
+    {% endfor %}
+    {% else: %}
+              <p class="small lh-sm">You have no tasks for today.</p>
+    {% endif %}
+  </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 1050px;">
+      {% if todos: %}
+      <a href="{{url_for('show_all_tasks')}}">
+      <button type="button" class="btn btn-outline-primary btn-lg btn-block m-2">All Tasks</button>
+        </a>
+      <a href="{{url_for('delete_all_tasks')}}">
+      <button type="button" class="btn btn-outline-danger btn-lg btn-block m-2">Clear All</button>
+      </a>
+      {% endif %}
+    </div>
+
+
+  </div>
+
+</main>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script async="" src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+
+</body>
+
+{% include "footer.html" %}
