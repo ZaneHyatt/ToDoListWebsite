@@ -46,7 +46,7 @@ def home():
             doing_true = True
         elif todo.statis == "done":
             done_true = True
-    today_todos = ToDo.query.filter_by(date=today).all()
+    today_todos = ToDo.query.filter_by(date=str(today)).all()
     return render_template("index.html", todos=all_todos, today_todos=today_todos, todo_true=todo_true, doing_true=doing_true, done_true=done_true)
 
 @app.route("/add", methods=["GET", "POST"])
