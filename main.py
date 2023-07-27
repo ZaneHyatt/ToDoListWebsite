@@ -30,7 +30,7 @@ class ToDo(db.Model):
     statis = db.Column(db.String(250), nullable=False)
     color = db.Column(db.String(250), nullable=False)
 
-# db.create_all()
+db.create_all()
 
 
 @app.route("/")
